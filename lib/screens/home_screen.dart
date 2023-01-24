@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           Column(
-            children: [
+            children: const [
               Text(
                 'Underground Street',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
