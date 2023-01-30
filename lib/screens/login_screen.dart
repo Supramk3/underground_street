@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:underground_street/screens/main_home_screen.dart';
+import 'package:underground_street/screens/registration_screen.dart';
+import 'package:underground_street/widgets/custom_button.dart';
 import 'package:underground_street/widgets/validated_textform_field.dart';
 
 import '../authentication/auth.dart';
@@ -44,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.transparent,
       ),
       body: SafeArea(
-        minimum: EdgeInsets.all(15.0),
+        minimum: const EdgeInsets.all(15.0),
         child: Center(
           child: Form(
             key: formkey,
@@ -77,14 +79,6 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 30,
                 ),
-                // TextFormField(
-                //   controller: _controllerEmail,
-                //   validator: (value) {
-                //     if (value!.isEmpty || !value.contains('@'))
-                //       return 'Please enter a valid email address';
-                //     return null;
-                //   },
-                // ),
                 ValidatedTextFormField(
                   controller: _controllerEmail,
                   hintText: 'Email',
@@ -96,19 +90,6 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
-                // TextFormField(
-                //   controller: _controllerPassword,
-                //   obscureText: true,
-                //   validator: (value) {
-                //     if (value!.isEmpty) {
-                //       return 'Please enter a password';
-                //     } else if (value.length < 6) {
-                //       return 'password must be 6 characters more';
-                //     } else {
-                //       return null;
-                //     }
-                //   },
-                // ),
                 const SizedBox(height: 30.0),
                 ValidatedTextFormField(
                   controller: _controllerPassword,
@@ -133,13 +114,14 @@ class _LoginPageState extends State<LoginPage> {
                 Center(
                   child: Text(
                     errorMessage!,
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   ),
                 ),
                 Directionality(
                   textDirection: TextDirection.rtl,
                   child: ElevatedButton.icon(
                     style: ButtonStyle(
+                      fixedSize: const MaterialStatePropertyAll(Size(300, 40)),
                       backgroundColor:
                           const MaterialStatePropertyAll(Colors.black),
                       shape: MaterialStatePropertyAll(
@@ -166,9 +148,134 @@ class _LoginPageState extends State<LoginPage> {
                       }
                       setState(() {});
                     },
-                    icon: Icon(Icons.arrow_back_sharp),
+                    icon: const Icon(Icons.arrow_back_sharp),
                   ),
                 ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                        child: Container(
+                      margin: const EdgeInsets.only(left: 10.0, right: 20.0),
+                      height: 36.0,
+                      child: const Divider(
+                        color: Colors.black,
+                      ),
+                    )),
+                    const Text('OR'),
+                    Expanded(
+                      child: Container(
+                          margin:
+                              const EdgeInsets.only(left: 15.0, right: 10.0),
+                          child: const Divider(
+                            color: Colors.black,
+                            height: 36,
+                          )),
+                    ),
+                  ],
+                ),
+                CustomButton(
+                    color: Colors.white,
+                    borderRadius: 18.0,
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 10,
+                          backgroundColor: Colors.white,
+                          child: Image.asset(
+                            'assets/images/google-logo.png',
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        const Text(
+                          'Sign in with Google',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    )),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                CustomButton(
+                    color: Colors.white,
+                    borderRadius: 18.0,
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        CircleAvatar(
+                          radius: 10,
+                          backgroundColor: Colors.white,
+                          child: Icon(
+                            Icons.apple,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        Text(
+                          'Sign in with Apple',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    )),
+                const SizedBox(
+                  height: 100.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Dont have an account ?'),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RegisterScreen()));
+                      },
+                      child: Text(
+                        'Register',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ],
+                )
+                // CustomButton(
+                //     color: Colors.white,
+                //     borderRadius: 18.0,
+                //     onPressed: () {
+                //       Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (context) => RegisterScreen()));
+                //     },
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       children: const [
+                //         CircleAvatar(
+                //           radius: 10,
+                //           backgroundColor: Colors.white,
+                //           child: Icon(
+                //             Icons.account_box,
+                //             color: Colors.black,
+                //           ),
+                //         ),
+                //         SizedBox(
+                //           width: 10.0,
+                //         ),
+                //         Text(
+                //           'Sign up for account',
+                //           style: TextStyle(color: Colors.black),
+                //         ),
+                //       ],
+                //     ))
               ],
             ),
           ),
