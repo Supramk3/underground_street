@@ -227,7 +227,7 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     )),
                 const SizedBox(
-                  height: 100.0,
+                  height: 50.0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -238,9 +238,9 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => RegisterScreen()));
+                                builder: (context) => const RegisterScreen()));
                       },
-                      child: Text(
+                      child: const Text(
                         'Register',
                         style: TextStyle(color: Colors.black),
                       ),
